@@ -6,7 +6,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { useMemo } from 'react';
 import Home from './Home';
 
-require('@solana/wallet-adapter-react-ui/styles.css');
+require('./solstyles.css');
 
 export default function App() {
     const network = WalletAdapterNetwork.Devnet;

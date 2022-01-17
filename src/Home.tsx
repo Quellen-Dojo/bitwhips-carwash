@@ -1,10 +1,10 @@
-import { WalletDisconnectButton, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { useWallet, useConnection, useAnchorWallet } from "@solana/wallet-adapter-react";
-import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { WalletDisconnectButton, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useWallet, useConnection, useAnchorWallet } from '@solana/wallet-adapter-react';
+import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { useCallback } from 'react';
 
 export default function Home() {
-    const {publicKey, sendTransaction, wallet} = useWallet();
+    const { publicKey, sendTransaction, wallet } = useWallet();
     const anchor = useAnchorWallet();
     const { connection } = useConnection();
     console.log(anchor);
@@ -20,23 +20,22 @@ export default function Home() {
         try {
             const sig = await sendTransaction(txn, connection);
             await connection.confirmTransaction(sig, 'confirmed');
-
         } catch (e) {
             console.log(e);
         }
-    },[publicKey,sendTransaction,connection]);
+    }, [publicKey, sendTransaction, connection]);
 
     return (
-    <div>
-            {!anchor && (<WalletMultiButton />)}
-            {anchor && (<div>
-                <WalletDisconnectButton />
-                <button onClick={buttonOnClick}>Send 69 Lamports</button>
-                </div>)}
-    </div>
+        <div>
+            {!anchor && <WalletMultiButton />}
+            {anchor && (
+                <div>
+                    <WalletDisconnectButton />
+                    <button onClick={buttonOnClick}>Send 69 Lamports</button>
+                </div>
+            )}
+        </div>
     );
 }
 
-function TxnSender() {
-
-}
+function TxnSender() {}
