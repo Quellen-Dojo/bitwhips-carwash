@@ -1,0 +1,75 @@
+:root {
+    --primaryColor: #8efbff;
+    --secondaryColor: #000E0F;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #19b4c2;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.nftImage {
+    width: 100%;
+    border-radius: 7px;
+    box-shadow: rgba(0,0,0,1) 0px 0px 3px;
+    transition: 250ms;
+}
+
+.nftImage:hover {
+    filter:brightness(50%);
+    cursor: pointer;
+}
+
+.nftImage:active {
+    filter: brightness(150%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nftContainer {
+    /* border: 2px var(--primaryColor) solid; */
+    background-color: rgb(214, 214, 214);
+    box-shadow: rgba(0,0,0,0.8) 0px 0px 6px;
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+    width: 80%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+h1 {
+    margin: 20px;
+    font-size: 5vw;
+    color:var(--primaryColor);
+    text-shadow: rgba(49, 49, 49, 0.774) 2px 2px 3px;
+    transition: 250ms;
+}
+
+nav {
+    margin: 0;
+    background-color: var(--secondaryColor);
+    padding: 10px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .nftContainer {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    /* .h1 {
+        font-size: 2vw;
+    } */
+}

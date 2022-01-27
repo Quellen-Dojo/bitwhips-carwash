@@ -6,7 +6,7 @@
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.130",
     "@types/react": "^17.0.38",
-    "parcel": "^2.2.0"
+    "parcel": "^2.2.1"
   },
   "scripts": {
     "start": "yarn parcel src/index.html -p 3000"
