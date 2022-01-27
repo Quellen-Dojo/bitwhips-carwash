@@ -89,7 +89,7 @@ function NFTDisplay(props: {
         return metadataArray.filter(v => v.description === 'BitWhips Series 1 - Landevo');
     };
 
-    const [nftData, setNFTData] = useState([]);
+    const [nftData, setNFTData] = useState<Array<NFTMeta>>(undefined);
 
     
 
@@ -111,9 +111,16 @@ function NFTDisplay(props: {
 
     return (
         <div className='container'>
-            <div className='nftContainer'>
-                {filterNonCleaned(filterLandevos(nftData)).map((v, k) => <NFTImage payForWash={props.payForWash} wallet={props.wallet} nftMetadata={v} key={k} />)}
-            </div>
+            {nftData && (
+                <div className='nftContainer'>
+                        {filterNonCleaned(filterLandevos(nftData)).map((v, k) => <NFTImage payForWash={props.payForWash} wallet={props.wallet} nftMetadata={v} key={k} />)}
+                </div>
+            )}
+            {!nftData && (
+                <div className='nftContainer'>
+                    <h1 style={{color: 'white'}}>Loading...</h1>
+                </div>
+            )}
         </div>
     );
 }
