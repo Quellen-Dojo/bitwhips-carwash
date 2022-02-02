@@ -95,9 +95,9 @@ function NFTDisplay(props: {
 
     useEffect(() => {
         const fetchMetadata = async () => {
-            const metadata = await (
+            const metadata = await(
                 await fetch(
-                    `https://bitwhipsmintback.herokuapp.com/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
+                    `http://localhost:3002/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
                     {
                         method: 'GET',
                         headers: { 'Content-Type': 'application/json' },
