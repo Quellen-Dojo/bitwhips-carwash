@@ -75,7 +75,7 @@ function NFTDisplay(props: {
     const filterNonCleaned = (metadataArray: Array<NFTMeta>) => {
         const cleanedInAttributes = (attrs: { trait_type: string; value: string }[]) => {
             for (const attr of attrs) {
-                if (attr.trait_type === 'Washed' && attr.value === 'Yes') {
+                if (attr.trait_type === 'Washed') {
                     return true;
                 }
             }
