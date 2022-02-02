@@ -135,6 +135,11 @@ function NFTImage(props: { nftMetadata: NFTMeta, payForWash: Function, wallet: A
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ signature: sig, nft: props.nftMetadata, fromWallet: props.wallet.publicKey.toBase58() }),
                 });
+                if (processRes.status == 200) {
+                    window.location.reload();
+                } else {
+                    console.log('Did not return 200?');
+                }
             }
         },
         []
