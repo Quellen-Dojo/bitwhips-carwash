@@ -167,7 +167,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
 
         setLoading(true);
         try {
-            const pingres = await fetch('https://bitswhipsmintback.herokuapp.com/ping', { 'method': 'GET' });
+            const pingres = await fetch('https://bitwhipsmintback.herokuapp.com/ping', { 'method': 'GET' });
             // const pingres = await fetch('https://httpstat.us/500?sleep=2000', { method: 'GET' });
             if (pingres.status != 200) { alert('The server did not respond. Please try again!'); throw new Error('Backend Serer isn\'t responding'); }
             const sig = await props.payForWash();
