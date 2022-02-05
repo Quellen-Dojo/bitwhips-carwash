@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "yarn parcel src/index.html -p 3000",
-    "vercel-build": "yarn parcel build src/index.html --output dist"
+    "vercel-build": "yarn parcel build src/index.html"
   },
   "dependencies": {
     "@solana/wallet-adapter-base": "^0.9.2",
