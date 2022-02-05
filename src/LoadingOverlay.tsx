@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { LoadingContext } from './LoadingState';
 
 //@ts-ignore
 import loadingLogo from './images/loading.svg';

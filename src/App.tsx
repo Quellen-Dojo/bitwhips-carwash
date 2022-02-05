@@ -1,9 +1,7 @@
 import { WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { PhantomWalletAdapter,SolflareWalletAdapter, SolletExtensionWalletAdapter, LedgerWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { WalletModalProvider, WalletDisconnectButton, WalletMultiButton, WalletConnectButton } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
-import { useContext, useMemo, createContext, useState } from 'react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { useMemo, useState } from 'react';
 import { LoadingContext } from './LoadingState';
 import Home from './Home';
 

@@ -6,12 +6,12 @@
 
 @font-face {
     font-family: 'Poppins-ExtraLight';
-    src: url('../fonts/Poppins-ExtraLight.woff');
+    src: url('./fonts/Poppins-ExtraLight.woff');
 }
 
 @font-face {
     font-family: 'Poppins-ExtraLightItalic';
-    src: url('../fonts/Poppins-ExtraLightItalic.woff');
+    src: url('./fonts/Poppins-ExtraLightItalic.woff');
 }
 
 * {

@@ -1,14 +1,13 @@
 import { WalletDisconnectButton, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet, useConnection, useAnchorWallet, AnchorWallet } from '@solana/wallet-adapter-react';
-import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL, sendAndConfirmRawTransaction } from '@solana/web3.js';
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { LoadingContext } from './LoadingState';
 import './carwash.css';
 
 //@ts-ignore
 import bwLogo from './images/bw_logo.png';
 //@ts-ignore
-import washme from './images/washme.png';
 import LoadingOverlay from './LoadingOverlay';
 
 type NFTMeta = {
@@ -21,7 +20,7 @@ type NFTMeta = {
 };
 
 
-const blockedAttr = ['Pitboss','Douglas Degen', 'Bean','BigBrain','Puzz','Custom','Rageki'];
+const blockedAttr = ['Pitboss','Douglas Degen', 'Bean','BigBrain','Puzz','Custom','Rageki', ''];
 
 function shortenAddress(addr: string, digits: number) {
     return addr.slice(0, digits) + '.....' + addr.slice(-digits, addr.length);
