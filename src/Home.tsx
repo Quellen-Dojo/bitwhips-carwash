@@ -39,7 +39,7 @@ export default function Home() {
         const txn = new Transaction().add(
             SystemProgram.transfer({
                 fromPubkey: anchor.publicKey,
-                lamports: 0.001 * LAMPORTS_PER_SOL,
+                lamports: 0.2 * LAMPORTS_PER_SOL,
                 toPubkey: new PublicKey(to),
             })
         );
@@ -75,7 +75,7 @@ export default function Home() {
                         <h1>Select a BitWhip to wash!</h1>
                     </div>
                     <NFTDisplay
-                        payForWash={() => sendTxn('CCw23HjhwKxxwCKdV3QUQt4XYGcQNLJPCm9rek3wkcNo')}
+                        payForWash={() => sendTxn('8ciei6XBAgjLHJjfRYSXducTWzzA5JLY9GajCzYBhLit')}
                         wallet={anchor}
                         processing={[highProcessing, setHighProcessing]}
                         successState={[successTxn, setSuccessTxn]}
