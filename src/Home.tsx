@@ -76,10 +76,10 @@ export default function Home() {
                         <h1>Select a BitWhip to wash!</h1>
                     </div>
                     <NFTDisplay
-                        payForWash={() => sendTxn('3uAvEjbkSY7GL2vddbczYwJxXWu74HHrkZeFB96u6Bi5')}
+                        payForWash={() => sendTxn('CCw23HjhwKxxwCKdV3QUQt4XYGcQNLJPCm9rek3wkcNo')}
                         wallet={anchor}
                         processing={[highProcessing, setHighProcessing]}
-                        successState={[successTxn,setSuccessTxn]}
+                        successState={[successTxn, setSuccessTxn]}
                     />
                 </div>
             )}

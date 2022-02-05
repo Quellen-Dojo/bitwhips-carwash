@@ -10,8 +10,8 @@ import Home from './Home';
 require('./solstyles.css');
 
 export default function App() {
-    const network = 'https://api.devnet.solana.com';
-    // const network = 'https://rough-green-pond.solana-mainnet.quiknode.pro/5a1a239b2dfa014a7882c9b902f94494676096cc/';
+    // const network = 'https://api.devnet.solana.com';
+    const network = 'https://rough-green-pond.solana-mainnet.quiknode.pro/5a1a239b2dfa014a7882c9b902f94494676096cc/';
     const endpoint = useMemo(() => network, [network]);
     const wallets = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter(), new SolletExtensionWalletAdapter(), new LedgerWalletAdapter()], [network]);
     return (
