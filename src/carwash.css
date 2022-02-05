@@ -1,19 +1,53 @@
 :root {
-    --primaryColor: #8efbff;
-    --secondaryColor: #000E0F;
+    /* --primaryColor: #8efbff; */
+    --primaryColor: #00ffff;
+    --secondaryColor: #4b4b4b;
+}
+
+@font-face {
+    font-family: 'Poppins-ExtraLight';
+    src: url('../fonts/Poppins-ExtraLight.woff');
+}
+
+@font-face {
+    font-family: 'Poppins-ExtraLightItalic';
+    src: url('../fonts/Poppins-ExtraLightItalic.woff');
 }
 
 * {
     margin: 0;
 }
 
+
 body {
-    background-color: #19b4c2;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #1b1d21;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    font-family: 'Poppins-ExtraLightItalic', sans-serif;
+    letter-spacing: 2px;
+}
+
+.loadingOverlay {
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loadingOverlay h1 {
+    color: white;
 }
 
 .nftImage {
+    z-index: 0;
     width: 100%;
+    height: 100%;
     border-radius: 7px;
     box-shadow: rgba(0,0,0,1) 0px 0px 3px;
     transition: 250ms;
@@ -28,6 +62,17 @@ body {
     filter: brightness(150%);
 }
 
+.washImageOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -36,7 +81,7 @@ body {
 
 .nftContainer {
     /* border: 2px var(--primaryColor) solid; */
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(77, 77, 77);
     box-shadow: rgba(0,0,0,0.8) 0px 0px 6px;
     padding: 20px;
     display: grid;
@@ -52,15 +97,30 @@ h1 {
     margin: 20px;
     font-size: 5vw;
     color:var(--primaryColor);
-    text-shadow: rgba(49, 49, 49, 0.774) 2px 2px 3px;
+    text-shadow: rgba(255, 255, 255, 0.233) 1px 2px 2px;
     transition: 250ms;
 }
 
 nav {
     margin: 0;
-    background-color: var(--secondaryColor);
     padding: 10px;
     width: 100%;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h3 {
+    color:white;
+    letter-spacing: 3px;
+}
+
+.logoimg {
+    margin-right: 30px;
+    width: 80px;
+    height: 80px;
 }
 
 @media only screen and (max-width: 600px) {
