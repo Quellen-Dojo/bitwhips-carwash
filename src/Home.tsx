@@ -20,7 +20,23 @@ type NFTMeta = {
 };
 
 
-const blockedAttr = ['Pitboss','Douglas Degen', 'Bean','BigBrain','Puzz','Custom','Rageki','Devonair','Gecko','PonyBoy','Silver','Bronze','Slow AF','Nemov'];
+const blockedAttr = [
+    'Pitboss',
+    'Douglas Degen',
+    'Bean',
+    'BigBrain',
+    'Puzz',
+    'Custom',
+    'Rageki',
+    'Devonair',
+    'Gecko',
+    'PonyBoy',
+    'Silver',
+    'Bronze',
+    'Slow AF',
+    'Nemov',
+    'Rocketeer',
+];
 
 function shortenAddress(addr: string, digits: number) {
     return addr.slice(0, digits) + '.....' + addr.slice(-digits, addr.length);
