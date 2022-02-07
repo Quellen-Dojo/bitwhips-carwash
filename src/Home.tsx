@@ -2,6 +2,7 @@ import { WalletDisconnectButton, WalletMultiButton } from '@solana/wallet-adapte
 import { useWallet, useConnection, useAnchorWallet, AnchorWallet } from '@solana/wallet-adapter-react';
 import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { LoadingContext } from './LoadingState';
 import './carwash.css';
 
@@ -64,6 +65,17 @@ export default function Home() {
         return sig;
     };
 
+    useEffect(() => {
+        if (highProcessing) {
+            ReactDOM.render(<LoadingOverlay successTxn={successTxn} />, document.getElementById('overlay'));
+        } else {
+            ReactDOM.unmountComponentAtNode(document.getElementById('overlay'));
+        }
+        return (() => {
+            ReactDOM.unmountComponentAtNode(document.getElementById('overlay'));
+        })
+    }, [highProcessing]);
+
     return (
         <div>
             {!anchor && (
@@ -74,7 +86,7 @@ export default function Home() {
             )}
             {anchor && (
                 <div>
-                    {highProcessing && <LoadingOverlay successTxn={successTxn} />}
+                    {/* {highProcessing && <LoadingOverlay successTxn={successTxn} />} */}
                     <nav>
                         <WalletDisconnectButton />
                         <h3>{shortenAddress(anchor.publicKey.toBase58(), 5)}</h3>
