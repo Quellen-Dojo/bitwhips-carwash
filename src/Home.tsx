@@ -4,6 +4,8 @@ import { SystemProgram, Transaction, PublicKey, LAMPORTS_PER_SOL } from '@solana
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { LoadingContext } from './LoadingState';
+import determineCarType from './utils/determineCarType';
+
 import './carwash.css';
 
 //@ts-ignore
@@ -19,7 +21,6 @@ type NFTMeta = {
     attributes: { trait_type: string; value: string }[];
     mint: string;
 };
-
 
 const blockedAttr = [
     'Pitboss',
@@ -207,6 +208,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
                         body: JSON.stringify({
                             signature: sig,
                             nft: props.nftMetadata,
+                            type: determineCarType(props.nftMetadata.symbol),
                             fromWallet: props.wallet.publicKey.toBase58(),
                         }),
                     });
