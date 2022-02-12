@@ -73,7 +73,7 @@ export default function Home() {
         const txn = new Transaction().add(
             SystemProgram.transfer({
                 fromPubkey: anchor.publicKey,
-                lamports: 0.001 * LAMPORTS_PER_SOL,
+                lamports: 0.2 * LAMPORTS_PER_SOL,
                 toPubkey: new PublicKey(to),
             })
         );
