@@ -38,7 +38,23 @@ const blockedAttr = [
     'Slow AF',
     'Nemov',
     'Rocketeer',
+
+    'Teslerr Model J',
+    'Toasty',
+    'Kachow',
+    'Souls',
+    'Coug',
+    'DatWank',
+    'Legend',
+    'Starbase',
+    'Dexter',
 ];
+
+const allowedModels = [
+    'BW',
+    'BWTSLR'
+];
+
 
 function shortenAddress(addr: string, digits: number) {
     return addr.slice(0, digits) + '.....' + addr.slice(-digits, addr.length);
@@ -57,7 +73,7 @@ export default function Home() {
         const txn = new Transaction().add(
             SystemProgram.transfer({
                 fromPubkey: anchor.publicKey,
-                lamports: 0.2 * LAMPORTS_PER_SOL,
+                lamports: 0.001 * LAMPORTS_PER_SOL,
                 toPubkey: new PublicKey(to),
             })
         );
@@ -87,7 +103,6 @@ export default function Home() {
             )}
             {anchor && (
                 <div>
-                    {/* {highProcessing && <LoadingOverlay successTxn={successTxn} />} */}
                     <nav>
                         <WalletDisconnectButton />
                         <h3>{shortenAddress(anchor.publicKey.toBase58(), 5)}</h3>
@@ -134,25 +149,18 @@ function NFTDisplay(props: {
         return metadataArray.filter(v => !cleanedInAttributes(v.attributes));
     };
 
-    const filterLandevos = (metadataArray: Array<NFTMeta>) => {
-        return metadataArray.filter(v => v.description === 'BitWhips Series 1 - Landevo');
+    const filterDisallowedModels = (metadataArray: Array<NFTMeta>) => {
+        return metadataArray.filter(v => allowedModels.includes(v.symbol));
     };
 
     const [nftData, setNFTData] = useState<Array<NFTMeta>>(undefined);
     const [successTxn, setSuccessTxn] = props.successState;
 
-    //TODO:
-    /*
-    Disallow Customs from being washed
-    Add "processing..." overlay while txn finishes
-    Add final metadata check in backend
-    */
-
     useEffect(() => {
         const fetchMetadata = async () => {
             const metadata = await(
                 await fetch(
-                    `https://bitwhipsmintback.herokuapp.com/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
+                    `http://localhost:3002/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
                     {
                         method: 'GET',
                         headers: { 'Content-Type': 'application/json' },
@@ -168,7 +176,7 @@ function NFTDisplay(props: {
         <div className='container'>
             {nftData && (
                 <div className='nftContainer'>
-                    {filterNonCleaned(filterLandevos(nftData)).map((v, k) => (
+                    {filterNonCleaned(filterDisallowedModels(nftData)).map((v, k) => (
                         <NFTImage
                             successSetter={setSuccessTxn}
                             payForWash={props.payForWash}
@@ -196,13 +204,16 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
 
         setLoading(true);
         try {
-            const pingres = await fetch('https://bitwhipsmintback.herokuapp.com/ping', { 'method': 'GET' });
-            // const pingres = await fetch('https://httpstat.us/500?sleep=2000', { method: 'GET' });
-            if (pingres.status != 200) { alert('The server did not respond. Please try again!'); throw new Error('Backend Serer isn\'t responding'); }
+            try {
+                const pingres = await fetch('http://localhost:3002/ping', { 'method': 'GET' });
+            } catch {
+                alert('The server did not respond. Please try again later!');
+                return;
+            }
             const sig = await props.payForWash();
             if (sig) {
                 try {
-                    const processRes = await fetch('https://bitwhipsmintback.herokuapp.com/processcarwash', {
+                    const processRes = await fetch('http://localhost:3002/processcarwash', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
