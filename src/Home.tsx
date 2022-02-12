@@ -160,7 +160,7 @@ function NFTDisplay(props: {
         const fetchMetadata = async () => {
             const metadata = await(
                 await fetch(
-                    `http://localhost:3002/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
+                    `https://bitwhipsmintback.herokuapp.com/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
                     {
                         method: 'GET',
                         headers: { 'Content-Type': 'application/json' },
@@ -205,7 +205,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
         setLoading(true);
         try {
             try {
-                const pingres = await fetch('http://localhost:3002/ping', { 'method': 'GET' });
+                const pingres = await fetch('https://bitwhipsmintback.herokuapp.com/ping', { method: 'GET' });
             } catch {
                 alert('The server did not respond. Please try again later!');
                 return;
@@ -213,7 +213,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
             const sig = await props.payForWash();
             if (sig) {
                 try {
-                    const processRes = await fetch('http://localhost:3002/processcarwash', {
+                    const processRes = await fetch('https://bitwhipsmintback.herokuapp.com/processcarwash', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
