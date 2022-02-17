@@ -5,7 +5,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { LoadingContext } from './LoadingState';
 import determineCarType from './utils/determineCarType';
-
+import { allowedModels, blockedAttr } from './utils/blockedAttributes';
 import './carwash.css';
 
 //@ts-ignore
@@ -22,46 +22,12 @@ type NFTMeta = {
     mint: string;
 };
 
-const blockedAttr = [
-    'Pitboss',
-    'Douglas Degen',
-    'Bean',
-    'BigBrain',
-    'Puzz',
-    'Custom',
-    'Rageki',
-    'Devonair',
-    'Gecko',
-    'PonyBoy',
-    'Silver',
-    'Bronze',
-    'Slow AF',
-    'Nemov',
-    'Rocketeer',
-
-    'Teslerr Model J',
-    'Toasty',
-    'Kachow',
-    'Souls',
-    'Coug',
-    'DatWank',
-    'Legend',
-    'Starbase',
-    'Dexter',
-];
-
-const allowedModels = [
-    'BW',
-    'BWTSLR'
-];
-
-
 function shortenAddress(addr: string, digits: number) {
     return addr.slice(0, digits) + '.....' + addr.slice(-digits, addr.length);
 }
 
 export default function Home() {
-    const { publicKey, sendTransaction, wallet } = useWallet();
+    const { sendTransaction } = useWallet();
     const anchor = useAnchorWallet();
     const { connection } = useConnection();
 
@@ -153,11 +119,21 @@ function NFTDisplay(props: {
         return metadataArray.filter(v => allowedModels.includes(v.symbol));
     };
 
+    const isEmpty = (array: Array<any>) => {
+        if (array) {
+            return array.length === 0;
+        } else {
+            return true;
+        }
+    }
+
     const [nftData, setNFTData] = useState<Array<NFTMeta>>(undefined);
     const [successTxn, setSuccessTxn] = props.successState;
 
+    const [filteredWhips, setFilteredWhips] = useState<Array<NFTMeta>>(undefined);
+
     useEffect(() => {
-        const fetchMetadata = async () => {
+        const fetchMetadataAndSetContext = async () => {
             const metadata = await(
                 await fetch(
                     `https://bitwhipsmintback.herokuapp.com/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
@@ -168,23 +144,28 @@ function NFTDisplay(props: {
                 )
             ).json();
             setNFTData(metadata);
+            setFilteredWhips(filterNonCleaned(filterDisallowedModels(metadata)));
         };
-        fetchMetadata();
+        fetchMetadataAndSetContext();
     }, []);
 
     return (
         <div className='container'>
             {nftData && (
                 <div className='nftContainer'>
-                    {filterNonCleaned(filterDisallowedModels(nftData)).map((v, k) => (
-                        <NFTImage
-                            successSetter={setSuccessTxn}
-                            payForWash={props.payForWash}
-                            wallet={props.wallet}
-                            nftMetadata={v}
-                            key={k}
-                        />
-                    ))}
+                    {!isEmpty(filteredWhips) &&
+                        filteredWhips.map((v, k) => (
+                            <NFTImage
+                                successSetter={setSuccessTxn}
+                                payForWash={props.payForWash}
+                                wallet={props.wallet}
+                                nftMetadata={v}
+                                key={k}
+                            />
+                        ))}
+                    {isEmpty(filteredWhips) && (
+                        <h1 style={{ color: 'white' }}>No valid BitWhips detected!</h1>
+                    )}
                 </div>
             )}
             {!nftData && (
@@ -231,6 +212,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
                             "Fatal error with the washing process. Notify Quellen immediately that you've received this error!"
                         );
                         alert('Refresh the page!');
+                        //Leave them on processing so that they don't try again until a full refresh
                     }
                 } catch {
                     alert('Fatal error with the washing process. Notify Quellen immediately that you\'ve received this error!');

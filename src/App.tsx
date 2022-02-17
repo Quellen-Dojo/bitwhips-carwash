@@ -4,7 +4,6 @@ import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { useMemo, useState } from 'react';
 import { LoadingContext } from './LoadingState';
 import Home from './Home';
-import LoadingOverlay from './LoadingOverlay';
 
 require('./solstyles.css');
 
