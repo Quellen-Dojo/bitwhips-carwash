@@ -4,6 +4,8 @@ export default function determineCarType(symbol: string) {
             return 'landevo';
         case 'BWTSLR':
             return 'teslerr';
+        case 'TreeFiddy':
+            return 'treefiddy';
         default:
             throw new Error(`This NFT (Symbol: ${symbol}) is not supposed to be in the displayed list!`);
     }

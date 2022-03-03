@@ -130,21 +130,27 @@ function NFTDisplay(props: {
     const [nftData, setNFTData] = useState<Array<NFTMeta>>(undefined);
     const [successTxn, setSuccessTxn] = props.successState;
 
+    const [fetchWhipError, setFetchError] = useState(false);
+
     const [filteredWhips, setFilteredWhips] = useState<Array<NFTMeta>>(undefined);
 
     useEffect(() => {
         const fetchMetadataAndSetContext = async () => {
-            const metadata = await(
-                await fetch(
-                    `https://bitwhipsmintback.herokuapp.com/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
-                    {
-                        method: 'GET',
-                        headers: { 'Content-Type': 'application/json' },
-                    }
-                )
-            ).json();
-            setNFTData(metadata);
-            setFilteredWhips(filterNonCleaned(filterDisallowedModels(metadata)));
+            try {
+                const metadata = await (
+                    await fetch(
+                        `https://bitwhipsmintback.herokuapp.com/getallwhips?wallet=${props.wallet.publicKey.toBase58()}&includeTopLevel=true`,
+                        {
+                            method: 'GET',
+                            headers: { 'Content-Type': 'application/json' },
+                        }
+                    )
+                ).json();
+                setNFTData(metadata);
+                setFilteredWhips(filterNonCleaned(filterDisallowedModels(metadata)));
+            } catch {
+                setFetchError(true);
+            }
         };
         fetchMetadataAndSetContext();
     }, []);
@@ -163,14 +169,16 @@ function NFTDisplay(props: {
                                 key={k}
                             />
                         ))}
-                    {isEmpty(filteredWhips) && (
-                        <h1 style={{ color: 'white' }}>No valid BitWhips detected!</h1>
-                    )}
+                    {isEmpty(filteredWhips) && <h1 style={{ color: 'white' }}>No valid BitWhips detected!</h1>}
                 </div>
             )}
             {!nftData && (
                 <div className='nftContainer'>
-                    <h1 style={{ color: 'white' }}>Loading...</h1>
+                    {fetchWhipError ? (
+                        <h1 style={{ color: 'white' }}>Error! Please try again!</h1>
+                    ) : (
+                        <h1 style={{ color: 'white' }}>Loading...</h1>
+                    )}
                 </div>
             )}
         </div>
@@ -192,6 +200,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
                 return;
             }
             const sig = await props.payForWash();
+            // const sig = true;
             if (sig) {
                 try {
                     const processRes = await fetch('https://bitwhipsmintback.herokuapp.com/processcarwash', {
@@ -206,7 +215,7 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
                     });
                     if (processRes.status == 200) {
                         props.successSetter(true);
-                        setTimeout(() => window.location.reload(), 3000);
+                        setTimeout(() => window.location.href='/success', 3000);
                     } else {
                         alert(
                             "Fatal error with the washing process. Notify Quellen immediately that you've received this error!"
@@ -214,7 +223,8 @@ function NFTImage(props: { nftMetadata: NFTMeta; payForWash: Function; wallet: A
                         alert('Refresh the page!');
                         //Leave them on processing so that they don't try again until a full refresh
                     }
-                } catch {
+                } catch (submitError) {
+                    console.log(submitError);
                     alert('Fatal error with the washing process. Notify Quellen immediately that you\'ve received this error!');
                     alert('Refresh the page!');
                 }

@@ -24,7 +24,18 @@ export const blockedAttr = [
     'Legend',
     'Starbase',
     'Dexter',
-    'Umbra Waifu'
+    'Umbra Waifu',
+
+    'Cheemz',
+    'CO2',
+    'Dersmut',
+    'Kneecap',
+    'Ramen',
+    'Tuxkuro',
+    'Norrin',
+    'Oilio',
+    'Cazzual',
+    'Afib'
 ];
 
 export const allowedModels = ['BW', 'BWTSLR'];
