@@ -13,6 +13,7 @@ import bwLogo from './images/bw_logo.png';
 //@ts-ignore
 import LoadingOverlay from './LoadingOverlay';
 
+//Type
 type NFTMeta = {
     name: string;
     symbol: string;
