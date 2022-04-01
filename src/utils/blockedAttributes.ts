@@ -38,4 +38,4 @@ export const blockedAttr = [
     'Afib'
 ];
 
-export const allowedModels = ['BW', 'BWTSLR'];
+export const allowedModels = ['BW', 'BWTSLR', 'TreeFiddy'];
