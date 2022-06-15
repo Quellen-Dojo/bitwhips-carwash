@@ -14,15 +14,10 @@
     src: url('./fonts/Poppins-ExtraLightItalic.woff');
 }
 
-* {
-    margin: 0;
-}
-
-
 body {
-    background-color: #1b1d21;
+    background-color: #1b1d21 !important;
     /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
-    font-family: 'Poppins-ExtraLightItalic', sans-serif;
+    font-family: 'Poppins-ExtraLightItalic', sans-serif !important;
     letter-spacing: 2px;
 }
 
@@ -84,16 +79,15 @@ body {
     display: grid;
     grid-gap: 20px;
     width: 80%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     border-radius: 5px;
     margin: 10px;
 }
 
 h1 {
-    margin: 20px;
-    font-size: 5vw;
-    color:var(--primaryColor);
+    margin: 20px !important;
+    font-size: 5vw !important;
+    color:var(--primaryColor) !important;
     text-shadow: rgba(255, 255, 255, 0.233) 1px 2px 2px;
     transition: 250ms;
 }
@@ -121,10 +115,9 @@ nav h3 {
     height: 80px;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .nftContainer {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     nav h3 {
@@ -133,4 +126,8 @@ nav h3 {
     /* .h1 {
         font-size: 2vw;
     } */
+}
+
+.ant-notification {
+    color: black !important;
 }
