@@ -6,6 +6,7 @@
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.130",
     "@types/react": "^17.0.38",
+    "crypto-browserify": "^3.12.0",
     "parcel": "^2.2.1"
   },
   "scripts": {
@@ -14,10 +15,10 @@
   },
   "dependencies": {
     "@solana/spl-token": "^0.2.0",
-    "@solana/wallet-adapter-base": "^0.9.2",
-    "@solana/wallet-adapter-react": "^0.15.2",
-    "@solana/wallet-adapter-react-ui": "^0.9.4",
-    "@solana/wallet-adapter-wallets": "^0.15.2",
+    "@solana/wallet-adapter-base": "^0.9.5",
+    "@solana/wallet-adapter-react": "^0.15.5",
+    "@solana/wallet-adapter-react-ui": "^0.9.7",
+    "@solana/wallet-adapter-wallets": "^0.16.1",
     "@solana/web3.js": "^1.31.0",
     "antd": "^4.21.2",
     "react": "^17.0.2",
