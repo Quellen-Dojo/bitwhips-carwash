@@ -35,7 +35,7 @@ export function NFTImage(props: {
       if (sig) {
         try {
           const processRes = await fetch(
-            "http://localhost:3002/processcarwash",
+            "https://bitwhipsmintback.herokuapp.com/processcarwash",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
