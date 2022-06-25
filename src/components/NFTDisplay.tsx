@@ -2,6 +2,7 @@ import { WalletContextState } from "@solana/wallet-adapter-react";
 import { useEffect, useState } from "react";
 import { NFTMeta } from "../Home";
 import { allowedModels, blockedAttr } from "../utils/blockedAttributes";
+import { API_URL } from "../utils/constants";
 import { infoNotif } from "../utils/notifications";
 import { NFTImage } from "./NFTImage";
 
@@ -56,7 +57,7 @@ export function NFTDisplay(props: {
       try {
         const metadata = await (
           await fetch(
-            `https://bitwhipsmintback.herokuapp.com/easygetallwhips?wallet=${props.wallet.publicKey!.toBase58()}&includeTopLevel=true`,
+            `${API_URL}/easygetallwhips?wallet=${props.wallet.publicKey!.toBase58()}&includeTopLevel=true`,
             {
               method: "GET",
               headers: { "Content-Type": "application/json" },

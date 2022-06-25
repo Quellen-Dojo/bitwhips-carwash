@@ -2,6 +2,7 @@ import { WalletContextState } from "@solana/wallet-adapter-react";
 import { useCallback, useContext } from "react";
 import { NFTMeta } from "../Home";
 import { LoadingContext } from "../LoadingState";
+import { API_URL } from "../utils/constants";
 import determineCarType from "../utils/determineCarType";
 import { errorNotif, infoNotif } from "../utils/notifications";
 
@@ -19,7 +20,7 @@ export function NFTImage(props: {
     try {
       try {
         const pingres = await fetch(
-          "https://bitwhipsmintback.herokuapp.com/ping",
+          `${API_URL}/ping`,
           { method: "GET" }
         );
       } catch {
@@ -35,7 +36,7 @@ export function NFTImage(props: {
       if (sig) {
         try {
           const processRes = await fetch(
-            "https://bitwhipsmintback.herokuapp.com/processcarwash",
+            `${API_URL}/processcarwash`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
