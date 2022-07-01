@@ -48,6 +48,8 @@ export const blockedAttr = [
   "Yung Quell",
   "Pirate",
   "Dixie",
+
+  "Pizza Planet"
 ];
 
 export const allowedModels = ["BW", "BWTSLR", "TreeFiddy", "BWGOJ"];
