@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Route, Link, Routes, BrowserRouter } from "react-router-dom";
 import SuccessPage from "./SuccessPage";
+import React from "react";
 
 ReactDOM.render(
   <BrowserRouter>

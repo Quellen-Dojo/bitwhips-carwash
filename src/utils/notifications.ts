@@ -4,7 +4,7 @@ import { CSSProperties } from "react";
 const styleOverrides: CSSProperties = {
   backgroundColor: "#eee",
   color: "black !important",
-  fontWeight: '700',
+  fontWeight: "700",
 };
 
 const duration = 3;
@@ -15,7 +15,7 @@ export const infoNotif = (message: string, description: string) => {
     description,
     placement: "bottomLeft",
     style: styleOverrides,
-    duration
+    duration,
   });
 };
 
@@ -25,7 +25,7 @@ export const successNotif = (message: string, description: string) => {
     description,
     placement: "bottomLeft",
     style: styleOverrides,
-    duration
+    duration,
   });
 };
 
@@ -35,6 +35,6 @@ export const errorNotif = (message: string, description: string) => {
     description,
     placement: "bottomLeft",
     style: styleOverrides,
-    duration
+    duration,
   });
 };
