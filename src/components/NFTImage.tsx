@@ -1,4 +1,5 @@
 import { WalletContextState } from "@solana/wallet-adapter-react";
+import React from "react";
 import { useCallback, useContext } from "react";
 import { NFTMeta } from "../Home";
 import { LoadingContext } from "../LoadingState";
@@ -19,10 +20,7 @@ export function NFTImage(props: {
     setLoading(true);
     try {
       try {
-        const pingres = await fetch(
-          `${API_URL}/ping`,
-          { method: "GET" }
-        );
+        const pingres = await fetch(`${API_URL}/ping`, { method: "GET" });
       } catch {
         errorNotif(
           "ERROR",
@@ -35,27 +33,21 @@ export function NFTImage(props: {
       // const sig = true;
       if (sig) {
         try {
-          const processRes = await fetch(
-            `${API_URL}/processcarwash`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                signature: sig,
-                nft: props.nftMetadata,
-                type: determineCarType(props.nftMetadata.symbol),
-                fromWallet: props.wallet.publicKey!.toBase58(),
-              }),
-            }
-          );
+          const processRes = await fetch(`${API_URL}/processcarwash`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              signature: sig,
+              nft: props.nftMetadata,
+              type: determineCarType(props.nftMetadata.symbol),
+              fromWallet: props.wallet.publicKey!.toBase58(),
+            }),
+          });
           if (processRes.ok) {
             props.successSetter(true);
             setTimeout(() => (window.location.href = "/success"), 3000);
           } else {
-            errorNotif(
-              "Error Processing Transaction",
-              "Please try again!"
-            );
+            errorNotif("Error Processing Transaction", "Please try again!");
           }
         } catch (submitError) {
           console.log(submitError);

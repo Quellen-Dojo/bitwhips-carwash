@@ -2,14 +2,8 @@ import {
   WalletDisconnectButton,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
-import {
-  useWallet,
-  useConnection,
-} from "@solana/wallet-adapter-react";
-import {
-  Transaction,
-  PublicKey,
-} from "@solana/web3.js";
+import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import { Transaction, PublicKey } from "@solana/web3.js";
 import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { LoadingContext } from "./LoadingState";

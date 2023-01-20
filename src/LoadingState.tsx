@@ -1,3 +1,5 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
-export const LoadingContext = createContext([undefined, undefined]);
+export const LoadingContext = createContext<
+  [boolean, React.Dispatch<React.SetStateAction<boolean>>]
+  >([false, () => { }]);

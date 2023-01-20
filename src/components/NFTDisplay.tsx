@@ -16,7 +16,6 @@ export function NFTDisplay(props: {
     | [boolean, React.Dispatch<React.SetStateAction<boolean>>]
     | [undefined, undefined];
 }) {
-
   const [nftData, setNFTData] = useState<Array<NFTMeta>>();
   const [_successTxn, setSuccessTxn] = props.successState;
 
