@@ -5,9 +5,9 @@
   "devDependencies": {
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.130",
-    "@types/react": "^17.0.38",
+    "@types/react": "^18.0.25",
     "crypto-browserify": "^3.12.0",
-    "parcel": "^2.2.1"
+    "parcel": "^2.7.0"
   },
   "scripts": {
     "start": "yarn parcel src/index.html -p 3000",
@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@solana/spl-token": "^0.2.0",
-    "@solana/wallet-adapter-base": "^0.9.5",
-    "@solana/wallet-adapter-react": "^0.15.5",
-    "@solana/wallet-adapter-react-ui": "^0.9.7",
-    "@solana/wallet-adapter-wallets": "^0.16.1",
-    "@solana/web3.js": "^1.31.0",
-    "antd": "^4.21.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.2"
+    "@solana/wallet-adapter-base": "^0.9.18",
+    "@solana/wallet-adapter-react": "^0.15.24",
+    "@solana/wallet-adapter-react-ui": "^0.9.22",
+    "@solana/wallet-adapter-wallets": "^0.19.5",
+    "@solana/web3.js": "^1.66.2",
+    "antd": "^4.24.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3"
   }
 }
